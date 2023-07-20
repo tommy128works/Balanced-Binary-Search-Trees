@@ -6,75 +6,91 @@ const Tree = (array) => {
   let sortedArray = sortArray(array);
   let root = sortedArrayToBST(sortedArray, 0, sortedArray.length - 1);
 
-  const insertRec = (root, value) => {
-    if (root === null) {
-      root = Node(value);
-      return root;
+  const insertRec = (node, value) => {
+    if (node === null) {
+      node = Node(value);
+      return node;
     }
 
-    if (value < root.data) {
-      root.left = insertRec(root.left, value);
-    } else if (value > root.data) {
-      root.right = insertRec(root.right, value);
+    if (value < node.data) {
+      node.left = insertRec(node.left, value);
+    } else if (value > node.data) {
+      node.right = insertRec(node.right, value);
     }
 
-    return root;
-  }
-  
+    return node;
+  };
+
   const insert = (value) => {
     root = insertRec(root, value);
-  }
+  };
 
-  const deleteNodeRec = (root, value) => {
-    if (root === null) {
-      return root;
+  const deleteNodeRec = (node, value) => {
+    if (node === null) {
+      return node;
     }
 
-    if (root.data > value) {
-      root.left = deleteNodeRec(root.left, value);
-      return root;
-    } else if (root.data < value) {
-      root.right = deleteNodeRec(root.right, value);
-      return root;
+    if (node.data > value) {
+      node.left = deleteNodeRec(node.left, value);
+      return node;
+    } else if (node.data < value) {
+      node.right = deleteNodeRec(node.right, value);
+      return node;
     }
 
-    if (root.left === null) {
-      let temp = root.right;
-      root = null;
+    if (node.left === null) {
+      let temp = node.right;
+      node = null;
       return temp;
-    } else if (root.right === null) {
-      let temp = root.left;
-      root = null;
+    } else if (node.right === null) {
+      let temp = node.left;
+      node = null;
       return temp;
     } else {
-      let succParent = root;
+      let succParent = node;
 
-      let succ = root.right;
+      let succ = node.right;
 
       while (succ.left !== null) {
         succParent = succ;
         succ = succ.left;
       }
 
-      if (succParent !== root) {
+      if (succParent !== node) {
         succParent.left = succ.right;
       } else {
         succParent.right = succ.right;
       }
 
-      root.data = succ.data;
+      node.data = succ.data;
 
       succ = null;
-      return root;
+      return node;
     }
-  }
+  };
 
   const deleteNode = (value) => {
     root = deleteNodeRec(root, value);
-  }
+  };
+
+  const findRec = (node, value) => {
+    if (node.data === value) {
+      return node;
+    }
+
+    if (value < node.data) {
+      return findRec(node.left, value);
+    } else if (value > node.data) {
+      return findRec(node.right, value);
+    }
+  };
+
+  const find = (value) => {
+    return findRec(root, value);
+  };
 
 
-  return { root, insert, deleteNode };
+  return { root, insert, deleteNode, find };
 };
 
 export default Tree;
