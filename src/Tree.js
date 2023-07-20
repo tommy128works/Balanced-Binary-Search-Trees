@@ -89,8 +89,42 @@ const Tree = (array) => {
     return findRec(root, value);
   };
 
+  // traverse the tree in breadth-first level order
+  // use node.data as the argument to the provided function
+  // return an array of values if no function is given
 
-  return { root, insert, deleteNode, find };
+  // Tip = use an array to represent a queue as you traverse each level
+
+  const levelOrder = (func = null) => {
+    let queue = [];
+    let results = [];
+
+    queue.push(root);
+    while (queue.length != 0) {
+             
+        var tempNode = queue.shift();
+        results.push(tempNode.data);
+ 
+        if (tempNode.left != null) {
+            queue.push(tempNode.left);
+        }
+
+        if (tempNode.right != null) {
+            queue.push(tempNode.right);
+        }
+    }
+
+    if (typeof func === "function") {
+      for (let i = 0; i < results.length; i++) {
+        results[i] = func(results[i]);
+      }
+    }
+    
+    return results;
+  }
+
+
+  return { root, insert, deleteNode, find, levelOrder };
 };
 
 export default Tree;
