@@ -1,31 +1,11 @@
-import Node from "./Node.js";
+import sortArray from "./sortArray.js";
+import sortedArrayToBST from "./sortedArrayToBST.js";
 
 const Tree = (array) => {
-  let root = null;
+  let sortedArray = sortArray(array);
+  let root = sortedArrayToBST(sortedArray, 0, sortedArray.length - 1);
 
-  const buildTree = (array) => {
-
-    array.sort(function(a, b) {return a - b});
-    let index = 1;
-    let previousValue = array[0];
-    while(array[index]) {
-      if (array[index] === previousValue) {
-        array.splice(index, 1);
-      } else {
-        previousValue = array[index];
-        index++;
-      }
-    }
-
-    console.log(array);
-
-
-    // return root
-  }
-
-  buildTree(array);
-
-  // return { append };
+  return { root };
 };
 
 export default Tree;
