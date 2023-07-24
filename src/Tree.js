@@ -244,6 +244,37 @@ const Tree = (array) => {
     return depthRec(root, value);
   };
 
+  const isBalancedRec = (node) => {
+    if (node == null) {
+      return 0;
+    }
+
+    let leftHeight = isBalancedRec(node.left);
+    if (leftHeight == -1) {
+      return -1;
+    }
+
+    let rightHeight = isBalancedRec(node.right);
+    if (rightHeight == -1) {
+      return -1;
+    }
+
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+      return -1;
+    } else {
+      return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+  };
+
+  const isBalanced = () => {
+    if (isBalancedRec(root) > 0) {
+      console.log("Tree is balanced.");
+    } else {
+      console.log("Tree is not balanced.");
+    }
+  };
+
   return {
     root,
     insert,
@@ -255,6 +286,7 @@ const Tree = (array) => {
     postOrder,
     findHeight,
     findDepth,
+    isBalanced,
   };
 };
 
