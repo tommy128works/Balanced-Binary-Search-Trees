@@ -3,7 +3,7 @@ import Tree from "./Tree.js";
 
 const addOne = (data) => {
   return data + 1;
-}
+};
 
 let arrayData = [10, 40, 30, 20, 20, 60, 50, 80, 90, 100, 70, 90];
 
@@ -17,9 +17,10 @@ let tree = Tree(arrayData);
 // console.log(tree.levelOrder());  // print level order traversal
 // console.log(tree.levelOrder(addOne))  // apply function to each node in level order traversal
 
-console.log(tree.inOrder()); // print inorder traversal
-console.log(tree.inOrder(addOne))  // apply function to each node in inorder traversal
+// console.log(tree.inOrder()); // print inorder traversal
+// console.log(tree.inOrder(addOne))  // apply function to each node in inorder traversal
+
+console.log(tree.preOrder()); // print preorder traversal
+console.log(tree.preOrder(addOne)); // apply function to each node in preorder traversal
 
 // prettyPrint(tree.root); // display final tree
-
-

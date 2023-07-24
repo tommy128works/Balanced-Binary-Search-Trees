@@ -98,17 +98,16 @@ const Tree = (array) => {
 
     queue.push(root);
     while (queue.length != 0) {
-             
-        var tempNode = queue.shift();
-        results.push(tempNode.data);
- 
-        if (tempNode.left != null) {
-            queue.push(tempNode.left);
-        }
+      var tempNode = queue.shift();
+      results.push(tempNode.data);
 
-        if (tempNode.right != null) {
-            queue.push(tempNode.right);
-        }
+      if (tempNode.left != null) {
+        queue.push(tempNode.left);
+      }
+
+      if (tempNode.right != null) {
+        queue.push(tempNode.right);
+      }
     }
 
     if (typeof func === "function") {
@@ -116,9 +115,9 @@ const Tree = (array) => {
         results[i] = func(results[i]);
       }
     }
-    
+
     return results;
-  }
+  };
 
   const inOrderRec = (node, array) => {
     if (node == null) {
@@ -134,7 +133,7 @@ const Tree = (array) => {
     if (array.length === size) {
       return array;
     }
-  }
+  };
 
   const inOrder = (func = null) => {
     let results = [];
@@ -147,10 +146,38 @@ const Tree = (array) => {
     }
 
     return results;
-  }
+  };
 
+  const preOrderRec = (node, array) => {
+    if (node == null) {
+      return;
+    }
 
-  return { root, insert, deleteNode, find, levelOrder, inOrder };
+    array.push(node.data);
+
+    preOrderRec(node.left, array);
+
+    preOrderRec(node.right, array);
+
+    if (array.length === size) {
+      return array;
+    }
+  };
+
+  const preOrder = (func = null) => {
+    let results = [];
+    results = preOrderRec(root, results);
+
+    if (typeof func === "function") {
+      for (let i = 0; i < results.length; i++) {
+        results[i] = func(results[i]);
+      }
+    }
+
+    return results;
+  };
+
+  return { root, insert, deleteNode, find, levelOrder, inOrder, preOrder };
 };
 
 export default Tree;
