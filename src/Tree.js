@@ -222,6 +222,28 @@ const Tree = (array) => {
     return heightRec(find(value), value);
   };
 
+  const depthRec = (node, value) => {
+    if (node == null) {
+      return -1;
+    }
+
+    let dist = -1;
+
+    if (
+      node.data == value ||
+      (dist = depthRec(node.left, value)) >= 0 ||
+      (dist = depthRec(node.right, value)) >= 0
+    ) {
+      return dist + 1;
+    }
+
+    return dist;
+  };
+
+  const findDepth = (value) => {
+    return depthRec(root, value);
+  };
+
   return {
     root,
     insert,
@@ -232,6 +254,7 @@ const Tree = (array) => {
     preOrder,
     postOrder,
     findHeight,
+    findDepth,
   };
 };
 
