@@ -5,9 +5,16 @@ const addOne = (data) => {
   return data + 1;
 };
 
-let arrayData = [10, 40, 30, 20, 20, 60, 50, 80, 90, 100, 70, 90];
+const randomArray = (size) => {
+  let array = [];
+  for (let i = 0; i < size; i++) {
+    array.push(Math.floor(Math.random() * 100));
+  }
+  return array;
+}
 
-let tree = Tree(arrayData);
+// let arrayData = [10, 40, 30, 20, 20, 60, 50, 80, 90, 100, 70, 90];
+// let tree = Tree(arrayData); // tree that is used to test each function individually
 // prettyPrint(tree.root);
 
 // tree.insert(75); // insert a new node
@@ -32,6 +39,31 @@ let tree = Tree(arrayData);
 
 // tree.isBalanced(); // check if tree is balanced
 
-tree.rebalance(); // rebalance tree
+// tree.rebalance(); // rebalance tree
+// prettyPrint(tree.root); // display final tree
 
-prettyPrint(tree.root); // display final tree
+
+// Full demonstration of Tree functions
+let mainTree = Tree(randomArray(10)); // create a tree with numbers less than 100
+mainTree.isBalanced(); // tree should be balanced
+
+console.log("Level Order: " + mainTree.levelOrder()); // print elements in levelOrder
+console.log("Pre Order: " + mainTree.preOrder()); // print elements in preOrder
+console.log("Post Order: " + mainTree.postOrder()); // print elements in postOrder
+console.log("In Order: " + mainTree.inOrder()); // print elements in inOrder
+
+mainTree.insert(101); // unbalance tree by adding several numbers > 100
+mainTree.insert(120);
+mainTree.insert(200);
+mainTree.insert(400);
+mainTree.insert(500);
+
+mainTree.isBalanced(); // confirm tree is unbalanced
+
+mainTree.rebalance(); // rebalance the tree
+mainTree.isBalanced(); // confirm tree is balanced again
+
+console.log("Level Order: " + mainTree.levelOrder()); // print elements in levelOrder
+console.log("Pre Order: " + mainTree.preOrder()); // print elements in preOrder
+console.log("Post Order: " + mainTree.postOrder()); // print elements in postOrder
+console.log("In Order: " + mainTree.inOrder()); // print elements in inOrder
