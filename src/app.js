@@ -23,7 +23,9 @@ let tree = Tree(arrayData);
 // console.log(tree.preOrder()); // print preorder traversal
 // console.log(tree.preOrder(addOne)); // apply function to each node in preorder traversal
 
-console.log(tree.postOrder()); // print postorder traversal
-console.log(tree.postOrder(addOne)); // apply function to each node in postorder traversal
+// console.log(tree.postOrder()); // print postorder traversal
+// console.log(tree.postOrder(addOne)); // apply function to each node in postorder traversal
+
+console.log(tree.findHeight(20)); // find height of specified node
 
 // prettyPrint(tree.root); // display final tree

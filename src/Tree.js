@@ -205,9 +205,34 @@ const Tree = (array) => {
 
     return results;
   };
-  
 
-  return { root, insert, deleteNode, find, levelOrder, inOrder, preOrder, postOrder };
+  const heightRec = (node, value) => {
+    if (node == null) {
+      return -1;
+    }
+
+    let leftHeight = heightRec(node.left, value);
+
+    let rightHeight = heightRec(node.right, value);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  };
+
+  const findHeight = (value) => {
+    return heightRec(find(value), value);
+  };
+
+  return {
+    root,
+    insert,
+    deleteNode,
+    find,
+    levelOrder,
+    inOrder,
+    preOrder,
+    postOrder,
+    findHeight,
+  };
 };
 
 export default Tree;
