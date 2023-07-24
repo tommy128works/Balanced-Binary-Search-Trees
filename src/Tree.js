@@ -127,7 +127,6 @@ const Tree = (array) => {
 
     inOrderRec(node.left, array);
 
-    // console.log(node.data + " ");
     array.push(node.data);
 
     inOrderRec(node.right, array);
@@ -139,7 +138,15 @@ const Tree = (array) => {
 
   const inOrder = (func = null) => {
     let results = [];
-    return inOrderRec(root, results);
+    results = inOrderRec(root, results);
+
+    if (typeof func === "function") {
+      for (let i = 0; i < results.length; i++) {
+        results[i] = func(results[i]);
+      }
+    }
+
+    return results;
   }
 
 

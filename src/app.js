@@ -16,7 +16,9 @@ let tree = Tree(arrayData);
 
 // console.log(tree.levelOrder());  // print level order traversal
 // console.log(tree.levelOrder(addOne))  // apply function to each node in level order traversal
+
 console.log(tree.inOrder()); // print inorder traversal
+console.log(tree.inOrder(addOne))  // apply function to each node in inorder traversal
 
 // prettyPrint(tree.root); // display final tree
 
