@@ -5,7 +5,7 @@ import Node from "./Node.js";
 const Tree = (array) => {
   let sortedArray = sortArray(array);
   let root = sortedArrayToBST(sortedArray, 0, sortedArray.length - 1);
-  let size = 10;
+  let size = sortedArray.length;
 
   const insertRec = (node, value) => {
     if (node === null) {
