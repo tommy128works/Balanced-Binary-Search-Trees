@@ -30,6 +30,8 @@ let tree = Tree(arrayData);
 
 // console.log(tree.findDepth(40)); // find depth of specified node
 
-tree.isBalanced(); // check if tree is balanced
+// tree.isBalanced(); // check if tree is balanced
 
-// prettyPrint(tree.root); // display final tree
+tree.rebalance(); // rebalance tree
+
+prettyPrint(tree.root); // display final tree

@@ -275,6 +275,25 @@ const Tree = (array) => {
     }
   };
 
+  const storeBSTNodesRec = (node, nodeList) => {
+    if (node == null) {
+      return;
+    }
+
+    storeBSTNodesRec(node.left, nodeList);
+    nodeList.push(node);
+    storeBSTNodesRec(node.right, nodeList);
+
+  }
+
+  const rebalance = () => {
+    let nodes = [];
+    storeBSTNodesRec(root, nodes);
+
+    let n = nodes.length;
+    root = sortedArrayToBST(nodes, 0, n - 1);
+  }
+
   return {
     root,
     insert,
@@ -287,6 +306,7 @@ const Tree = (array) => {
     findHeight,
     findDepth,
     isBalanced,
+    rebalance,
   };
 };
 
