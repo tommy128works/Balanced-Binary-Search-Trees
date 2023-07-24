@@ -5,6 +5,7 @@ import Node from "./Node.js";
 const Tree = (array) => {
   let sortedArray = sortArray(array);
   let root = sortedArrayToBST(sortedArray, 0, sortedArray.length - 1);
+  let size = 10;
 
   const insertRec = (node, value) => {
     if (node === null) {
@@ -23,6 +24,7 @@ const Tree = (array) => {
 
   const insert = (value) => {
     root = insertRec(root, value);
+    size++;
   };
 
   const deleteNodeRec = (node, value) => {
@@ -71,6 +73,7 @@ const Tree = (array) => {
 
   const deleteNode = (value) => {
     root = deleteNodeRec(root, value);
+    size--;
   };
 
   const findRec = (node, value) => {
@@ -88,12 +91,6 @@ const Tree = (array) => {
   const find = (value) => {
     return findRec(root, value);
   };
-
-  // traverse the tree in breadth-first level order
-  // use node.data as the argument to the provided function
-  // return an array of values if no function is given
-
-  // Tip = use an array to represent a queue as you traverse each level
 
   const levelOrder = (func = null) => {
     let queue = [];
@@ -123,8 +120,30 @@ const Tree = (array) => {
     return results;
   }
 
+  const inOrderRec = (node, array) => {
+    if (node == null) {
+      return;
+    }
 
-  return { root, insert, deleteNode, find, levelOrder };
+    inOrderRec(node.left, array);
+
+    // console.log(node.data + " ");
+    array.push(node.data);
+
+    inOrderRec(node.right, array);
+
+    if (array.length === size) {
+      return array;
+    }
+  }
+
+  const inOrder = (func = null) => {
+    let results = [];
+    return inOrderRec(root, results);
+  }
+
+
+  return { root, insert, deleteNode, find, levelOrder, inOrder };
 };
 
 export default Tree;
