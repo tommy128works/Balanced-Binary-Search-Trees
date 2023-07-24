@@ -177,7 +177,37 @@ const Tree = (array) => {
     return results;
   };
 
-  return { root, insert, deleteNode, find, levelOrder, inOrder, preOrder };
+  const postOrderRec = (node, array) => {
+    if (node == null) {
+      return;
+    }
+
+    postOrderRec(node.left, array);
+
+    postOrderRec(node.right, array);
+
+    array.push(node.data);
+
+    if (array.length === size) {
+      return array;
+    }
+  };
+
+  const postOrder = (func = null) => {
+    let results = [];
+    results = postOrderRec(root, results);
+
+    if (typeof func === "function") {
+      for (let i = 0; i < results.length; i++) {
+        results[i] = func(results[i]);
+      }
+    }
+
+    return results;
+  };
+  
+
+  return { root, insert, deleteNode, find, levelOrder, inOrder, preOrder, postOrder };
 };
 
 export default Tree;

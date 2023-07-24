@@ -20,7 +20,10 @@ let tree = Tree(arrayData);
 // console.log(tree.inOrder()); // print inorder traversal
 // console.log(tree.inOrder(addOne))  // apply function to each node in inorder traversal
 
-console.log(tree.preOrder()); // print preorder traversal
-console.log(tree.preOrder(addOne)); // apply function to each node in preorder traversal
+// console.log(tree.preOrder()); // print preorder traversal
+// console.log(tree.preOrder(addOne)); // apply function to each node in preorder traversal
+
+console.log(tree.postOrder()); // print postorder traversal
+console.log(tree.postOrder(addOne)); // apply function to each node in postorder traversal
 
 // prettyPrint(tree.root); // display final tree
